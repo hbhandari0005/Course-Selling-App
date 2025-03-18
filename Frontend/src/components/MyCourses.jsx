@@ -16,7 +16,7 @@ function MyCourses({ refresh, setRefresh }) {
   const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
   const handleDelete = async (courseId) => {
     const response = await axios.post(
-      `http://localhost:3000/${courseId}/delete`,
+      `https://harshit-course-selling-mern.onrender.com/${courseId}/delete`,
       {
         userAtLocalStorage,
       }
@@ -44,7 +44,7 @@ function MyCourses({ refresh, setRefresh }) {
     formData.append('oldImage',oldImage)
     setUpdating(true)
     const response = await axios.post(
-      `http://localhost:3000/${courseId}/edit`,
+      `https://harshit-course-selling-mern.onrender.com/${courseId}/edit`,
       formData,{
         headers: {
           "Content-Type": "multipart/form-data"
