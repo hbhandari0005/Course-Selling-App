@@ -27,7 +27,7 @@ function App() {
   const [user, setUser] = useState({});
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get("http://localhost:3000/courses");
+      const response = await axios.get("https://harshit-course-selling-mern.onrender.com/courses");
       setAllCourses(response.data);
       const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
       if (userAtLocalStorage !== null) {
