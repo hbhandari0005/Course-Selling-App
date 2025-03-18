@@ -13,7 +13,7 @@ function Signup() {
     e.preventDefault();
     try {
       let response = await axios.post(
-        "http://localhost:3000/signup",
+        "https://harshit-course-selling-mern.onrender.com/signup",
         { username: username, password: password },
         {}
       );
