@@ -165,8 +165,10 @@ function MyCourses({ refresh, setRefresh }) {
                     <div className="d-grid">
                     {updating ? (
                         <>
-                            <span className="spinner-border spinner-border-sm me-2"></span>
-                            Updating...
+                            <div className="d-flex justify-content-center align-items-center">
+                              <span className="spinner-border spinner-border-sm me-2"></span>
+                              <span className="text-center">Updating..</span>
+                            </div>
                         </>
                     ) : (
                       <button type="submit" className="btn btn-primary">
