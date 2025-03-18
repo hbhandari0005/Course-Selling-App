@@ -101,8 +101,10 @@ function Payment({user, login }) {
           </div>
           {paymentDone ? (
             <>
-              <span className="spinner-border spinner-border-sm me-2"></span>
-              Processing...
+              <div className="d-flex justify-content-center align-items-center">
+                  <span className="spinner-border spinner-border-sm me-2"></span>
+                  <span className="text-center">Processing..</span>
+              </div>
             </>
           ) : (
             <button type="submit" className="btn btn-primary w-100">
