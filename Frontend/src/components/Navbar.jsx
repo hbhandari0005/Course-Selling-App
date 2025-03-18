@@ -28,7 +28,7 @@ function Navbar({ login, setLogin, user, setUser }) {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/logout");
+      const response = await axios.get("https://harshit-course-selling-mern.onrender.com/logout");
       toast.success(response.data.message);
       setLogin(false);
       localStorage.removeItem("user");
