@@ -93,8 +93,12 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/courses", async (req, res) => {
-  const data = await Course.find().populate("user");
-  res.status(200).json(data);
+  try{
+    const data = await Course.find().populate("user");
+    res.status(200).json(data);
+  }catch(err){
+    res.status(400).json({message:"Failed to load courses"})
+  }
 });
 
 app.post("/buy/:userId", async (req, res) => {
