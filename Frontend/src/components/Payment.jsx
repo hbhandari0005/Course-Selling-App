@@ -59,7 +59,7 @@ function Payment({user, login }) {
               placeholder="1234 5678 9012 3456"
               required
             />
-            <div className="invalid-feedback">Please enter a course name.</div>
+            <div className="invalid-feedback">Please enter valid card number.</div>
           </div>
 
           <div className="row mb-3">
