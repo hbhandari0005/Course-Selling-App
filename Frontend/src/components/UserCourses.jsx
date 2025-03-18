@@ -14,7 +14,7 @@ function UserCourses({ login }) {
       setCourses(response.data.user.courses);
     };
     Func();
-    setTimeout(() => setLoading(false), 300);
+    setTimeout(() => setLoading(false), 1500);
   }, []);
   return (
     <>
