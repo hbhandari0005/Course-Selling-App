@@ -11,6 +11,9 @@ body {
   justify-content: center;
   transition: transform 0.3s ease-in-out;
 }
+.toast-class{
+  width:70% !important;
+}
 .container {
   background-color: hsla(190, 33%, 7%, 0.975) !important;
 }
