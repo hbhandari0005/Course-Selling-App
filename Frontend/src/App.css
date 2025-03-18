@@ -10,6 +10,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease-in-out;
+  filter:invert(1);
 }
 .toast-class{
   width:300px !important;
