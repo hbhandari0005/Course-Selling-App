@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const passport = require("passport");
 const session = require("express-session");
 const cloudinary = require("cloudinary").v2;
@@ -21,7 +22,7 @@ app.use(
     methods: "GET,POST,PUT,DELETE",
   })
 )
-
+app.use(express.static(path.join(__dirname, "build")));
 app.use(
   session({
     secret: process.env.MY_SECRET_KEY,
