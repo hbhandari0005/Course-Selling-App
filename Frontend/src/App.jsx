@@ -96,7 +96,15 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          toastClassName="toast-class"
+          closeOnClick
+          pauseOnHover
+          draggable
+        />
       </div>
     </>
   );
