@@ -22,7 +22,7 @@ function Payment({user, login }) {
     }
     try {
       const response = await axios.post(
-        `http://localhost:3000/buy/${user._id}`,
+        `https://harshit-course-selling-mern.onrender.com/buy/${user._id}`,
         {
           courseId,
         }
