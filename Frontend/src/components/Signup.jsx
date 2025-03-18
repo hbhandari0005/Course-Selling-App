@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Signup() {
+  const [loading, setLoading] = useState(false)
   let [error, setError] = useState("");
   let [username, setName] = useState("");
   let [password, setPassword] = useState("");
@@ -11,6 +12,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       let response = await axios.post(
         "https://harshit-course-selling-mern.onrender.com/signup",
@@ -18,7 +20,7 @@ function Signup() {
         {}
       );
       toast.success(response.data.message);
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       if (err.status === 409) {
         toast.error("User already exists");
@@ -26,6 +28,7 @@ function Signup() {
         toast.error(err.message);
       }
     }
+    setLoading(false)
   };
 
   return (
@@ -64,9 +67,18 @@ function Signup() {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100">
-              Submit
-            </button>
+            {loading ? (
+              <>
+                <div className="d-flex justify-content-center align-items-center">
+                  <span className="spinner-border spinner-border-sm me-2"></span>
+                  <span className="text-center">Logging in...</span>
+                </div>
+              </>
+            ) : (
+              <button type="submit" className="btn btn-primary w-100">
+                Submit
+              </button>
+            )}
           </form>
         </div>
       </div>
