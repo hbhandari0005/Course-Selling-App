@@ -69,7 +69,7 @@ function MyCourses({ refresh, setRefresh }) {
       }
     };
     Func();
-    setTimeout(() => setLoading(false), 300);
+    setTimeout(() => setLoading(false), 1500);
   }, [refresh]);
   return (
     <>
