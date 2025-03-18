@@ -25,21 +25,26 @@ function App() {
   const [refresh, setRefresh] = useState(false);
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState({});
-  useEffect(() => {
-    const getData = async () => {
+ useEffect(() => {
+  const getData = async () => {
+    try {
       const response = await axios.get("https://harshit-course-selling-mern.onrender.com/courses");
       setAllCourses(response.data);
-      const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
-      if (userAtLocalStorage !== null) {
-        console.log(userAtLocalStorage);
-        console.log(user);
-        console.log(user === userAtLocalStorage);
-        setLogin(true);
-        setUser(userAtLocalStorage);
-      }
-    };
-    getData();
-  }, [refresh]);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+
+    const userAtLocalStorage = localStorage.getItem("user");
+    if (userAtLocalStorage) {
+      const parsedUser = JSON.parse(userAtLocalStorage);
+      setLogin(true);
+      setUser(parsedUser);
+    }
+  };
+
+  getData();
+}, [refresh]);
+
   return (
     <>
       <div className="d-flex flex-column min-vh-100">
