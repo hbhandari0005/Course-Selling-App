@@ -11,7 +11,7 @@ function Login({ setLogin, setUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("https://harshit-course-selling-mern.onrender.com/login", {
         username,
         password,
       });
