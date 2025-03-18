@@ -225,7 +225,7 @@ app.post("/:courseId/edit", upload.single("image"), async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
-app.listen(process.env.PORT, () => {
+const port=process.env.PORT || 3000
+app.listen(port, () => {
   console.log("Server connected on port 3000");
 });
