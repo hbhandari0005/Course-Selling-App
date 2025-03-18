@@ -56,6 +56,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.get('/',(req,res){
+  res.send("Server working")
+})
+
 app.post("/signup", async (req, res) => {
   try {
     let { username, password } = req.body;
