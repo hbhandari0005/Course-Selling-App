@@ -29,7 +29,9 @@ function App() {
   const getData = async () => {
     try {
       const response = await axios.get("https://harshit-course-selling-mern.onrender.com/courses");
-      setAllCourses(response.data);
+      if(response.data){
+        setAllCourses(response.data);
+      }
     } catch (error) {
       console.error("Error fetching courses:", error);
     }
