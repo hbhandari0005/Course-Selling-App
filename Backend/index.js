@@ -237,4 +237,8 @@ app.post("/:courseId/edit", upload.single("image"), async (req, res) => {
 const port=process.env.PORT || 3000
 app.listen(port, () => {
   console.log("Server connected on port 3000");
+})
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
+
