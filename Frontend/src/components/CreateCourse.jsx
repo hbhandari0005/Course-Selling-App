@@ -27,7 +27,7 @@ function CreateCourse({ setRefresh }) {
       formData.append("image", image); 
       setSubmitDone(true)
       const response = await axios.post(
-        `https://harshit-course-selling-mern.onrender.com/${userAtLocalStorage._id}/createCourse`,
+        `https://full-stack-jet-omega.vercel.app/${userAtLocalStorage._id}/createCourse`,
           formData,{
             headers: {
               "Content-Type": "multipart/form-data"
