@@ -9,7 +9,7 @@ function UserCourses({ login }) {
   useEffect(() => {
     const Func = async () => {
       const response = await axios.get(
-        `https://harshit-course-selling-mern.onrender.com/${userId}/courses`
+        `https://full-stack-jet-omega.vercel.app/${userId}/courses`
       );
       setCourses(response.data.user.courses);
     };
