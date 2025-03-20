@@ -15,7 +15,7 @@ function Signup() {
     setLoading(true)
     try {
       let response = await axios.post(
-        "https://harshit-course-selling-mern.onrender.com/signup",
+        "https://full-stack-jet-omega.vercel.app/signup",
         { username: username, password: password },
         {}
       );
