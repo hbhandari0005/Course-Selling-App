@@ -21,6 +21,7 @@ function Payment({user, login }) {
       return;
     }
     try {
+      setPaymentDone(true);
       const response = await axios.post(
         `https://full-stack-jet-omega.vercel.app/buy/${user._id}`,
         {
@@ -29,9 +30,9 @@ function Payment({user, login }) {
       );
       if (response.status === 201 || response.status === 202) {
         toast.error(response.data.message);
+        setPaymentDone(false);
         return;
       }
-      setPaymentDone(true);
       setTimeout(() => {
         toast.success("Payment successful");
         setPaymentDone(false);
