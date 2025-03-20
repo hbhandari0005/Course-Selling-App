@@ -28,7 +28,7 @@ function App() {
  useEffect(() => {
   const getData = async () => {
     try {
-      const response = await axios.get("https://harshit-course-selling-mern.onrender.com/courses");
+      const response = await axios.get("https://full-stack-jet-omega.vercel.app/courses");
       if(response.data){
         setAllCourses(response.data);
       }
