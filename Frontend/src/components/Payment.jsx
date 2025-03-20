@@ -22,7 +22,7 @@ function Payment({user, login }) {
     }
     try {
       const response = await axios.post(
-        `https://harshit-course-selling-mern.onrender.com/buy/${user._id}`,
+        `https://full-stack-jet-omega.vercel.app/buy/${user._id}`,
         {
           courseId,
         }
