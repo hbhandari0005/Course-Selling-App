@@ -13,7 +13,7 @@ function Login({ setLogin, setUser }) {
     e.preventDefault();
     setLoading(true)
     try {
-      const response = await axios.post("https://harshit-course-selling-mern.onrender.com/login", {
+      const response = await axios.post("https://full-stack-jet-omega.vercel.app/login", {
         username,
         password,
       });
