@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Courses({ allCourses, user, login }) {
+  const [loading,setLoading]=useState(true)
   const navigate = useNavigate();
   const handleBuy = async (courseId) => {
     if (!login) {
@@ -12,8 +13,22 @@ function Courses({ allCourses, user, login }) {
     }
     return navigate(`/buy/${courseId}`);
   };
+  useEffect(()=>{
+    const Func=()=>{
+      setTimeout(()=>setLoading(false),1400)
+    }
+    Func()
+  },[])
   return (
     <>
+      {loading && (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
+      {!loading &&
       <div className="container mt-4">
         <div className="row ">
           {allCourses.map((course) => (
@@ -46,7 +61,7 @@ function Courses({ allCourses, user, login }) {
             </div>
           ))}
         </div>
-      </div>
+      </div>}
     </>
   );
 }
