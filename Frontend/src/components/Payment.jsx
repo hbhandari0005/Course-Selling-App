@@ -78,7 +78,7 @@ function Payment({user, login }) {
               <input
                 type="number"
                 className="form-control"
-                min="001"
+                min="100"
                 max="999"
                 placeholder="123"
                 required
