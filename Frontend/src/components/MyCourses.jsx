@@ -16,7 +16,7 @@ function MyCourses({ refresh, setRefresh }) {
   const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
   const handleDelete = async (courseId) => {
     const response = await axios.post(
-      `https://harshit-course-selling-mern.onrender.com/${courseId}/delete`,
+      `https://full-stack-jet-omega.vercel.app/${courseId}/delete`,
       {
         userAtLocalStorage,
       }
@@ -44,7 +44,7 @@ function MyCourses({ refresh, setRefresh }) {
     formData.append('oldImage',oldImage)
     setUpdating(true)
     const response = await axios.post(
-      `https://harshit-course-selling-mern.onrender.com/${courseId}/edit`,
+      `https://full-stack-jet-omega.vercel.app/${courseId}/edit`,
       formData,{
         headers: {
           "Content-Type": "multipart/form-data"
@@ -61,7 +61,7 @@ function MyCourses({ refresh, setRefresh }) {
       const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
       try {
         const response = await axios.get(
-          `https://harshit-course-selling-mern.onrender.com/${userAtLocalStorage._id}/myCourses`
+          `https://full-stack-jet-omega.vercel.app/${userAtLocalStorage._id}/myCourses`
         );
         setMyCourses(response.data.myCourses);
       } catch (err) {
