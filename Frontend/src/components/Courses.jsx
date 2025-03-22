@@ -43,7 +43,7 @@ function Courses({ allCourses, user, login }) {
             <button className="btn btn-primary ms-2">Search</button>
           </div>
         <div className="row ">
-          {(allCourses.filter(course=>course.title.toLowerCase().includes(query))).map((course) => (
+          {(allCourses.filter(course=>course.title.toLowerCase().includes(query.toLowerCase()))).map((course) => (
             <div
               key={course._id}
               className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
