@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function Payment({user, login }) {
+function Payment({ user, login }) {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const [paymentDone, setPaymentDone] = useState(false);
@@ -59,7 +59,7 @@ function Payment({user, login }) {
               placeholder="1234 5678 9012 3456"
               required
             />
-            <div className="invalid-feedback">Please enter a course name.</div>
+            <div className="invalid-feedback">Please enter valid card number</div>
           </div>
 
           <div className="row mb-3">
@@ -101,8 +101,10 @@ function Payment({user, login }) {
           </div>
           {paymentDone ? (
             <>
-              <span className="spinner-border spinner-border-sm me-2"></span>
-              Processing...
+              <div className="d-flex justify-content-center align-items-center">
+                <span className="spinner-border spinner-border-sm me-2"></span>
+                <span className="text-center">Processing...</span>
+              </div>
             </>
           ) : (
             <button type="submit" className="btn btn-primary w-100">

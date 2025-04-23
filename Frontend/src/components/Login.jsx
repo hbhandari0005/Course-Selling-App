@@ -4,12 +4,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function Login({ setLogin, setUser }) {
+  const [loading, setLoading] = useState(false);
   let [username, setName] = useState("");
   let [password, setPassword] = useState("");
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post("http://localhost:3000/login", {
         username,
@@ -28,6 +30,7 @@ function Login({ setLogin, setUser }) {
         toast.error(err.message);
       }
     }
+    setLoading(false);
   };
 
   return (
@@ -65,9 +68,18 @@ function Login({ setLogin, setUser }) {
                 required
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100">
-              Submit
-            </button>
+            {loading ? (
+              <>
+                <div className="d-flex justify-content-center align-items-center">
+                  <span className="spinner-border spinner-border-sm me-2"></span>
+                  <span className="text-center">Logging in...</span>
+                </div>
+              </>
+            ) : (
+              <button type="submit" className="btn btn-primary w-100">
+                Submit
+              </button>
+            )}
           </form>
         </div>
       </div>

@@ -83,13 +83,22 @@ function App() {
             <Route
               path="/buy/:courseId"
               element={
-                <Payment courses={allCourses} user={user} login={login} />
+                <Payment courses={allCourses} login={login} />
               }
             />
           </Routes>
         </main>
         <Footer />
-        <ToastContainer />
+        <ToastContainer position="top-right" 
+  autoClose={2000} 
+  hideProgressBar={false} 
+  newestOnTop={false} 
+  closeOnClick 
+  rtl={false} 
+  toastClassName='toast-class'
+  pauseOnFocusLoss 
+  draggable 
+  pauseOnHover />
       </div>
     </>
   );
