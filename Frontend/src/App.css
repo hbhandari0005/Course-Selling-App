@@ -30,6 +30,13 @@ body {
 .footer {
   background-color: hsla(190, 33%, 7%, 0.975) !important;
 }
+.toast-class{
+  width: 300px !important;
+}
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
 .navbar-toggler-icon {
   width: 24px;
   height: 2px;

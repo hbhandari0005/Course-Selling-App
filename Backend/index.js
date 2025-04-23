@@ -37,9 +37,9 @@ mongoose.connect(process.env.MONGO_DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000, 
-})
-  .then(() => console.log("MongoDB Connected"))
+}).then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Connection Error:", err));
+}
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

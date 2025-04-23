@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function Payment({user, login }) {
+function Payment({ user, login }) {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const [paymentDone, setPaymentDone] = useState(false);

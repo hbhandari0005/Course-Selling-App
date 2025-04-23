@@ -90,7 +90,7 @@ function App() {
             <Route
               path="/buy/:courseId"
               element={
-                <Payment courses={allCourses} user={user} login={login} />
+                <Payment courses={allCourses} login={login} />
               }
             />
           </Routes>
