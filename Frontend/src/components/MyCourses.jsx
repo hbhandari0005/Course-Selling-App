@@ -16,7 +16,7 @@ function MyCourses({ refresh, setRefresh }) {
   const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
   const handleDelete = async (courseId) => {
     const response = await axios.post(
-      `http://localhost:3000/${courseId}/delete`,
+      `https://full-stack-jet-omega.vercel.app/${courseId}/delete`,
       {
         userAtLocalStorage,
       }
@@ -44,7 +44,7 @@ function MyCourses({ refresh, setRefresh }) {
     formData.append('oldImage',oldImage)
     setUpdating(true)
     const response = await axios.post(
-      `http://localhost:3000/${courseId}/edit`,
+      `https://full-stack-jet-omega.vercel.app/${courseId}/edit`,
       formData,{
         headers: {
           "Content-Type": "multipart/form-data"
@@ -61,7 +61,7 @@ function MyCourses({ refresh, setRefresh }) {
       const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
       try {
         const response = await axios.get(
-          `http://localhost:3000/${userAtLocalStorage._id}/myCourses`
+          `https://full-stack-jet-omega.vercel.app/${userAtLocalStorage._id}/myCourses`
         );
         setMyCourses(response.data.myCourses);
       } catch (err) {
@@ -69,7 +69,7 @@ function MyCourses({ refresh, setRefresh }) {
       }
     };
     Func();
-    setTimeout(() => setLoading(false), 300);
+    setTimeout(() => setLoading(false), 1500);
   }, [refresh]);
   return (
     <>
@@ -165,10 +165,10 @@ function MyCourses({ refresh, setRefresh }) {
                     <div className="d-grid">
                     {updating ? (
                         <>
-                          <div className="d-flex justify-content-center align-items-center">
-                            <span className="spinner-border spinner-border-sm me-2"></span>
-                            <span className="text-center">Updating..</span>
-                          </div>
+                            <div className="d-flex justify-content-center align-items-center">
+                              <span className="spinner-border spinner-border-sm me-2"></span>
+                              <span className="text-center">Updating..</span>
+                            </div>
                         </>
                     ) : (
                       <button type="submit" className="btn btn-primary">

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Signup() {
-  let [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false)
   let [error, setError] = useState("");
   let [username, setName] = useState("");
   let [password, setPassword] = useState("");
@@ -15,12 +15,12 @@ function Signup() {
     setLoading(true)
     try {
       let response = await axios.post(
-        "http://localhost:3000/signup",
+        "https://full-stack-jet-omega.vercel.app/signup",
         { username: username, password: password },
         {}
       );
       toast.success(response.data.message);
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       if (err.status === 409) {
         toast.error("User already exists");
@@ -68,17 +68,17 @@ function Signup() {
               />
             </div>
             {loading ? (
-            <>
-            <div className="d-flex justify-content-center align-items-center">
-              <span className="spinner-border spinner-border-sm me-2"></span>
-              <span className="text-center">Signing in...</span>
-            </div>
-            </>
-          ) : (
-            <button type="submit" className="btn btn-primary w-100">
-              Submit
-            </button>
-          )}
+              <>
+                <div className="d-flex justify-content-center align-items-center">
+                  <span className="spinner-border spinner-border-sm me-2"></span>
+                  <span className="text-center">Logging in...</span>
+                </div>
+              </>
+            ) : (
+              <button type="submit" className="btn btn-primary w-100">
+                Submit
+              </button>
+            )}
           </form>
         </div>
       </div>

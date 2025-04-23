@@ -9,12 +9,12 @@ function UserCourses({ login }) {
   useEffect(() => {
     const Func = async () => {
       const response = await axios.get(
-        `http://localhost:3000/${userId}/courses`
+        `https://full-stack-jet-omega.vercel.app/${userId}/courses`
       );
       setCourses(response.data.user.courses);
     };
     Func();
-    setTimeout(() => setLoading(false), 300);
+    setTimeout(() => setLoading(false), 1500);
   }, []);
   return (
     <>

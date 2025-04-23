@@ -10,6 +10,10 @@ body {
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease-in-out;
+  filter:invert(1);
+}
+.toast-class{
+  width:300px !important;
 }
 .container {
   background-color: hsla(190, 33%, 7%, 0.975) !important;

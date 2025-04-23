@@ -25,21 +25,28 @@ function App() {
   const [refresh, setRefresh] = useState(false);
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState({});
-  useEffect(() => {
-    const getData = async () => {
-      const response = await axios.get("http://localhost:3000/courses");
-      setAllCourses(response.data);
-      const userAtLocalStorage = JSON.parse(localStorage.getItem("user"));
-      if (userAtLocalStorage !== null) {
-        console.log(userAtLocalStorage);
-        console.log(user);
-        console.log(user === userAtLocalStorage);
-        setLogin(true);
-        setUser(userAtLocalStorage);
+ useEffect(() => {
+  const getData = async () => {
+    try {
+      const response = await axios.get("https://full-stack-jet-omega.vercel.app/courses");
+      if(response.data){
+        setAllCourses(response.data);
       }
-    };
-    getData();
-  }, [refresh]);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+
+    const userAtLocalStorage = localStorage.getItem("user");
+    if (userAtLocalStorage) {
+      const parsedUser = JSON.parse(userAtLocalStorage);
+      setLogin(true);
+      setUser(parsedUser);
+    }
+  };
+
+  getData();
+}, [refresh]);
+
   return (
     <>
       <div className="d-flex flex-column min-vh-100">
@@ -89,16 +96,15 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <ToastContainer position="top-right" 
-  autoClose={2000} 
-  hideProgressBar={false} 
-  newestOnTop={false} 
-  closeOnClick 
-  rtl={false} 
-  toastClassName='toast-class'
-  pauseOnFocusLoss 
-  draggable 
-  pauseOnHover />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          toastClassName="toast-class"
+          closeOnClick
+          pauseOnHover
+          draggable
+        />
       </div>
     </>
   );

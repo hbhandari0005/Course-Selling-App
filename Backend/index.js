@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const passport = require("passport");
 const session = require("express-session");
 const cloudinary = require("cloudinary").v2;
@@ -16,10 +17,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: "https://harshit-course-selling-mern.vercel.app",
+    credentials: true, 
+    methods: "GET,POST,PUT,DELETE",
   })
-);
+)
+app.use(express.static(path.join(__dirname, "build")));
 app.use(
   session({
     secret: process.env.MY_SECRET_KEY,
@@ -30,13 +33,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-const mongoConnect=async()=>{
-  await mongoose
-  .connect(process.env.MONGO_DB_URL)
-  .then(() => console.log("MongoDB Connected"))
+mongoose.connect(process.env.MONGO_DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, 
+}).then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Connection Error:", err));
 }
-mongoConnect()
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -51,6 +54,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.get('/',(req,res)=>{
+  res.send("Server working")
+})
 
 app.post("/signup", async (req, res) => {
   try {
@@ -91,8 +98,12 @@ app.get("/logout", (req, res) => {
 });
 
 app.get("/courses", async (req, res) => {
-  const data = await Course.find().populate("user");
-  res.status(200).json(data)
+  try{
+    const data = await Course.find().populate("user");
+    res.status(200).json(data);
+  }catch(err){
+    res.status(400).json({message:"Failed to load courses"})
+  }
 });
 
 app.post("/buy/:userId", async (req, res) => {
@@ -223,7 +234,11 @@ app.post("/:courseId/edit", upload.single("image"), async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
-app.listen(process.env.PORT, () => {
+const port=process.env.PORT || 3000
+app.listen(port, () => {
   console.log("Server connected on port 3000");
+})
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
+

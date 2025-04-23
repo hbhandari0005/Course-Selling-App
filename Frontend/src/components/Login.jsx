@@ -11,9 +11,9 @@ function Login({ setLogin, setUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("https://full-stack-jet-omega.vercel.app/login", {
         username,
         password,
       });
@@ -30,7 +30,7 @@ function Login({ setLogin, setUser }) {
         toast.error(err.message);
       }
     }
-    setLoading(false);
+    setLoading(false)
   };
 
   return (

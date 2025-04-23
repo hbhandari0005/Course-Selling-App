@@ -21,17 +21,18 @@ function Payment({ user, login }) {
       return;
     }
     try {
+      setPaymentDone(true);
       const response = await axios.post(
-        `http://localhost:3000/buy/${user._id}`,
+        `https://full-stack-jet-omega.vercel.app/buy/${user._id}`,
         {
           courseId,
         }
       );
       if (response.status === 201 || response.status === 202) {
         toast.error(response.data.message);
+        setPaymentDone(false);
         return;
       }
-      setPaymentDone(true);
       setTimeout(() => {
         toast.success("Payment successful");
         setPaymentDone(false);
@@ -59,7 +60,7 @@ function Payment({ user, login }) {
               placeholder="1234 5678 9012 3456"
               required
             />
-            <div className="invalid-feedback">Please enter valid card number</div>
+            <div className="invalid-feedback">Please enter valid card number.</div>
           </div>
 
           <div className="row mb-3">
@@ -78,7 +79,7 @@ function Payment({ user, login }) {
               <input
                 type="number"
                 className="form-control"
-                min="001"
+                min="100"
                 max="999"
                 placeholder="123"
                 required
@@ -102,8 +103,8 @@ function Payment({ user, login }) {
           {paymentDone ? (
             <>
               <div className="d-flex justify-content-center align-items-center">
-                <span className="spinner-border spinner-border-sm me-2"></span>
-                <span className="text-center">Processing...</span>
+                  <span className="spinner-border spinner-border-sm me-2"></span>
+                  <span className="text-center">Processing..</span>
               </div>
             </>
           ) : (
