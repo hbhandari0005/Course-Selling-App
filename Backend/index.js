@@ -30,15 +30,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose
-  .connect(process.env.MONGO_DB_URL, {
-    useNewUrlParser: true,
-    useCreateIndex:true,
-    useUnifiedTopology: true,
-    useFindAndModify:false
-  })
+const mongoConnect=async()=>{
+  await mongoose
+  .connect(process.env.MONGO_DB_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Connection Error:", err));
+}
+mongoConnect()
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -94,7 +92,7 @@ app.get("/logout", (req, res) => {
 
 app.get("/courses", async (req, res) => {
   const data = await Course.find().populate("user");
-  res.status(200).json(data);
+  res.status(200).json(data)
 });
 
 app.post("/buy/:userId", async (req, res) => {
